@@ -11,6 +11,11 @@
                 <p>{{ entry.blogBody }}</p>
 
                 <span>Posted by <a href="">{{ entry.author }}</a> on {{ entry.postDate | date('M d, Y') }}</span>
+                <p>
+                    Posted in {% for category in entry.category %} 
+                        <a href="{{ category.url }}">{{ category }} </a>
+                    {% endfor %}
+                </p>
             </div>
         </div>
         <div id="aside">
