@@ -174,10 +174,31 @@
     </style>
 </head>
     <body class="ltr">
-        <a href="/craftcms/web/">Home</a>
-        {% block main %}
         
-        {% endblock %}
+        
+
+        <div id="container">
+    <div id="modal">
+        <div id="main">
+            <div class="content">
+
+                {% block main %}
+        
+                {% endblock %}                
+
+            </div>
+        </div>
+        <div id="aside">
+            <div class="content">
+                <h2>Home</h2>
+                <ul>
+                    <li><a href="/craftcms/web/">Home</a></li>
+                    <li><a href="{{ cpUrl('') }}">Go to your Control Panel</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
     </body>
 </html>
