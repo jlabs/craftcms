@@ -3,10 +3,10 @@
 {% block main %}
 
 
-                <h1>{{ entry.title }}</h1>
-                <p>{{ entry.pageCopy }}</p>
+    <h1>{{ entry.title }}</h1>
+    <p>{{ entry.pageCopy }}</p>
 
-                <span>Posted by <a href="">{{ entry.author }}</a> on {{ entry.postDate | date('M d, Y') }}</span>
+    <span>Posted by <a href="">{{ entry.author }}</a> on {{ entry.postDate | date('M d, Y') }}</span>
             
 
 {% endblock main %}

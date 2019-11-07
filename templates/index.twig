@@ -7,9 +7,9 @@
     {% for entry in craft.entries.section('blog').limit(3).all() %}
         <div class="entry">
             <a href="{{ entry.url }}"><h2>{{ entry.title }}</h2></a>
-            <h3>{{ entry.blogIntroduction }}</h3>
-            <p>{{ entry.blogBody }}</p>
-            <p>Posted by {{ entry.author }} on {{ entry.postDate | date('M d, Y') }}</p>
+            <p>{{ entry.blogIntroduction }}</p>
+            <!--<p>{{ entry.blogBody }}</p>-->
+            <small>Posted by {{ entry.author }} on {{ entry.postDate | date('M d, Y') }}</small>
             
         </div>
         <hr/>

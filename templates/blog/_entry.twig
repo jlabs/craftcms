@@ -2,17 +2,18 @@
 
 {% block main %}
 
+    {% set entryImage = entry.blogImage.one() %}
 
-                <h1>{{ entry.title }}</h1>
-                <h2>{{ entry.blogIntroduction }}</h2>
-                <p>{{ entry.blogBody }}</p>
+    <h1>{{ entry.title }}</h1>
+    <h2>{{ entry.blogIntroduction }}</h2>
+    <img src="{{ entryImage.getUrl() }}"/>
+    <p>{{ entry.blogBody }}</p>
 
-                <span>Posted by <a href="">{{ entry.author }}</a> on {{ entry.postDate | date('M d, Y') }}</span>
-                <p>
-                    Posted in {% for category in entry.category %} 
-                        <a href="{{ category.url }}">{{ category }} </a>
-                    {% endfor %}
-                </p>
-
+    <span>Posted by <a href="">{{ entry.author }}</a> on {{ entry.postDate | date('M d, Y') }}</span>
+    <p>
+        Posted in {% for category in entry.category.all() %} 
+            <a href="{{ category.url }}">{{ category }} </a>
+        {% endfor %}
+    </p>
 
 {% endblock main %}

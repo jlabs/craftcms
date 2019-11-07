@@ -23,6 +23,15 @@
             display: flex;
         }
 
+        .red {
+            color: red;
+        }
+
+        .yellow {
+            list-style: none;
+            margin-left: 1em;
+        }
+
         h1 {
             margin-top: 0;
         }
@@ -191,9 +200,24 @@
         <div id="aside">
             <div class="content">
                 <h2>Home</h2>
+
+                {% set navPages = craft.entries.section('pages').all() %}
+
                 <ul>
                     <li><a href="/craftcms/web/">Home</a></li>
                     <li><a href="{{ cpUrl('') }}">Go to your Control Panel</a></li>
+
+                    {% nav entry in navPages %}
+
+                        <li><a href="{{ entry.url }}" class="{% if entry.hasDescendants() %} red {% endif %} {% if entry.getParent() %} yellow {% endif %}">{{ entry.title }}</a></li>
+
+                        {% ifchildren %}
+
+                        {% children %}
+
+                        {% endifchildren %}
+
+                    {% endnav %}
                 </ul>
             </div>
         </div>
