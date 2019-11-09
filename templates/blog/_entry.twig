@@ -6,14 +6,30 @@
 
     <h1>{{ entry.title }}</h1>
     <h2>{{ entry.blogIntroduction }}</h2>
-    <img src="{{ entryImage.getUrl() }}"/>
+    <!-- get the image url and use the named image transform to adjust said image -->
+    <img src="{{ entryImage.getUrl('blogPostSized') }}"/>
     <p>{{ entry.blogBody }}</p>
 
     <span>Posted by <a href="">{{ entry.author }}</a> on {{ entry.postDate | date('M d, Y') }}</span>
     <p>
-        Posted in {% for category in entry.category.all() %} 
+        in {% for category in entry.category.all() %} 
             <a href="{{ category.url }}">{{ category }} </a>
         {% endfor %}
+    </p>
+
+    <p>
+        {# Create an asset query with the 'volume' and 'kind' parameters #}
+{% set myAssetQuery = craft.assets().volume('photos').kind('image') %}
+
+{# Fetch the assets #}
+{% set images = myAssetQuery.all() %}
+
+{# Display the thumbnail list #}
+<ul>
+    {% for image in images %}
+        <li><img src="{{ image.getUrl('thumb') }}" alt="{{ image.title }}"></li>
+    {% endfor %}
+</ul>
     </p>
 
 {% endblock main %}

@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="referrer" content="origin-when-cross-origin" />
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         html,
         body {
             font-size: 16px;
@@ -23,12 +29,16 @@
             display: flex;
         }
 
+        ul {
+            list-style-type: none;
+        }
+
         .red {
             color: red;
         }
 
         .yellow {
-            list-style: none;
+            list-style-type: none;
             margin-left: 1em;
         }
 
@@ -110,6 +120,7 @@
             padding: 35px;
             padding-left: calc(35px + env(safe-area-inset-left));
             padding-right: calc(35px + env(safe-area-inset-right));
+            min-width: 400px;
         }
 
         @media (min-width:480px) {
@@ -199,26 +210,23 @@
         </div>
         <div id="aside">
             <div class="content">
-                <h2>Home</h2>
-
-                {% set navPages = craft.entries.section('pages').all() %}
-
                 <ul>
-                    <li><a href="/craftcms/web/">Home</a></li>
-                    <li><a href="{{ cpUrl('') }}">Go to your Control Panel</a></li>
+        <li><a href="/craftcms/web/">Home</a></li>
+        <li><a href="{{ cpUrl('') }}">Go to your Control Panel</a></li>
+        {% set navPages = craft.entries.section('pages').all() %}
+        {% nav entry in navPages %}
 
-                    {% nav entry in navPages %}
+            <li><a href="{{ entry.url }}" class="{% if entry.hasDescendants() %} red {% endif %} {% if entry.getParent() %} yellow {% endif %}">{{ entry.title }}</a></li>
 
-                        <li><a href="{{ entry.url }}" class="{% if entry.hasDescendants() %} red {% endif %} {% if entry.getParent() %} yellow {% endif %}">{{ entry.title }}</a></li>
+            {% ifchildren %}
 
-                        {% ifchildren %}
+            {% children %}
 
-                        {% children %}
+            {% endifchildren %}
 
-                        {% endifchildren %}
-
-                    {% endnav %}
-                </ul>
+        {% endnav %}
+    </ul>
+                
             </div>
         </div>
     </div>
