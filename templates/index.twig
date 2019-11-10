@@ -2,7 +2,8 @@
 
 {% block main %}
 
-    <h1>HELLO THERE!</h1>
+    {% set you = currentUser.firstName %}
+    <h1>HELLO THERE {{ you }}</h1>
                 
     {% for entry in craft.entries.section('blog').limit(3).all() %}
         <div class="entry">
