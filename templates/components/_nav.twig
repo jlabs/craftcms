@@ -1,0 +1,27 @@
+{% extends "_layout" %}
+
+{% block menu %}
+    nav
+    {% set navPages = craft.entries.section('pages').all() %}
+
+    <ul>
+                    <li><a href="/craftcms/web/">Home</a></li>
+                    {% if currentUser %}
+                        <li><a href="{{ cpUrl('') }}">Control Panel</a></li>
+                    {% endif %}
+
+                    {% set navPages = craft.entries.section('pages').all() %}
+                    {% nav entry in navPages %}
+
+                        <li><a href="{{ entry.url }}" class="{% if entry.hasDescendants() %} red {% endif %} {% if entry.getParent() %} yellow {% endif %}">{{ entry.title }}</a></li>
+
+                        {% ifchildren %}
+
+                        {% children %}
+
+                        {% endifchildren %}
+
+                    {% endnav %}
+                </ul>
+
+{% endblock %}

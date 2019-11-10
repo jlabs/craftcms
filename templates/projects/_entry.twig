@@ -1,0 +1,12 @@
+{% extends "_layout" %}
+
+{% block main %}
+
+    
+
+    <h1>{{ entry.title }}</h1>
+    <div>{{ entry.projectDetails }}</div>
+    <span>Posted by <a href="">{{ entry.author }}</a> on {{ entry.postDate | date('M d, Y') }}</span>
+    
+
+{% endblock main %}

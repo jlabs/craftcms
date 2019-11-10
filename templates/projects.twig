@@ -2,15 +2,15 @@
 
 {% block main %}
 
-    <h1>HELLO THERE!</h1>
+    <h1>Projects</h1>
                 
-    {% for entry in craft.entries.section('blog').limit(3).all() %}
+    {% for entry in craft.entries.section('projects').limit(3).all() %}
         <div class="entry">
             <a href="{{ entry.url }}">
                 <h2>{{ entry.title }}</h2>
             </a>
-            <div class="blogIntro">{{ entry.blogIntroduction }}</div>
-            <!--<p>{{ entry.blogBody }}</p>-->
+            
+            
             <small>Posted by {{ entry.author }} on {{ entry.postDate | date('M d, Y') }}</small>
             
         </div>
